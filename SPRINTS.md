@@ -6,7 +6,7 @@
 
 # Sprint 1 — Base Django y base de datos
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** crear proyecto Django, configurar base de datos y modelo Producto.
 

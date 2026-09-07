@@ -33,11 +33,26 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 - Git
 - GitHub
 
-## Modelo inicial previsto
+## Estado actual
+
+Sprint 1 completado.
+
+Django:
+
+- proyecto `ratastock` creado;
+- aplicación `inventario` creada.
+
+Base de datos:
+
+- SQLite3;
+- gestionada con Django ORM;
+- `db.sqlite3` local e ignorada por Git.
+
+## Modelo implementado
 
 Producto:
 
-- `id`
+- `id` automático
 - `nombre`
 - `descripcion`
 - `stock`
@@ -45,7 +60,17 @@ Producto:
 - `activo`
 - `fecha_creacion`
 
-El modelo todavía no debe programarse en el Sprint 0.
+Migración: `inventario/migrations/0001_initial.py`.
+
+Seguridad: `SECRET_KEY` se carga mediante `.env` y `python-decouple`.
+
+Pendiente:
+
+- Django Admin;
+- superusuario;
+- CRUD;
+- autenticación;
+- protección de vistas.
 
 ## Alcance
 

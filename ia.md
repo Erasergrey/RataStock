@@ -30,3 +30,4 @@ Se analizó el enunciado y se decidió mantener un proyecto pequeño centrado en
 | Sprint | Consulta realizada | Propuesta de IA | Decisión/corrección del estudiante |
 |---|---|---|---|
 | 0 | ¿Qué alcance corresponde a ES2? | Priorizar base de datos, Admin, CRUD, autenticación y sesiones. | Mantener un proyecto pequeño y excluir API, React, pagos y carrito. |
+| 1 | ¿Qué estructura mínima debería tener un modelo Producto para demostrar persistencia mediante Django ORM sin agregar funcionalidades innecesarias? | Usar un único modelo con nombre, descripción, stock, precio, estado y fecha de creación; configurar SQLite y ordenar el flujo de migraciones. | Mantener solamente Producto, descartar categorías, proveedores y pedidos, y proteger `SECRET_KEY` desde el primer commit de Django. |
