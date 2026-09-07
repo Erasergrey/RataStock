@@ -26,4 +26,8 @@ RataStock ES2 es una aplicación académica desarrollada con Django para gestion
 
 ## Estado
 
-Sprint 1 — Base Django, SQLite y modelo Producto completado.
+Sprint 2 — Django Admin completado.
+
+Django y SQLite están configurados, el modelo `Producto` está implementado y
+puede administrarse desde Django Admin mediante un superusuario local. El CRUD
+propio de la aplicación todavía está pendiente.

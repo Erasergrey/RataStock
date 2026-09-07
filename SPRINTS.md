@@ -12,7 +12,7 @@
 
 # Sprint 2 — Django Admin
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** registrar y gestionar Producto mediante Django Admin.
 

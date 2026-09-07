@@ -35,7 +35,7 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 
 ## Estado actual
 
-Sprint 1 completado.
+Sprints 1 y 2 completados.
 
 Django:
 
@@ -64,13 +64,35 @@ Migración: `inventario/migrations/0001_initial.py`.
 
 Seguridad: `SECRET_KEY` se carga mediante `.env` y `python-decouple`.
 
+Django Admin:
+
+- `Producto` registrado en `inventario/admin.py`;
+- listado administrativo con campos relevantes;
+- búsqueda por nombre;
+- filtro por estado activo;
+- ordenamiento por nombre;
+- superusuario local creado;
+- acceso a `/admin/` validado.
+
+Pruebas realizadas desde Django Admin:
+
+- crear un producto;
+- consultar y listar;
+- buscar por nombre;
+- filtrar por estado activo;
+- editar el stock;
+- eliminar el producto temporal.
+
+Estas operaciones administrativas no reemplazan el CRUD propio requerido en
+el Sprint 3.
+
 Pendiente:
 
-- Django Admin;
-- superusuario;
-- CRUD;
-- autenticación;
+- CRUD propio;
+- templates;
+- login y logout propios;
 - protección de vistas.
+- pruebas finales.
 
 ## Alcance
 
