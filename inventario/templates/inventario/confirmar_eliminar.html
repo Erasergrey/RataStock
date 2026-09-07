@@ -1,0 +1,17 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Eliminar producto | RataStock ES2{% endblock %}
+
+{% block content %}
+<section class="tarjeta">
+    <h1>Eliminar producto</h1>
+    <p>¿Está seguro de eliminar el producto <strong>{{ producto.nombre }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="acciones">
+            <button class="peligro" type="submit">Eliminar</button>
+            <a class="boton secundario" href="{% url 'inventario:lista_productos' %}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

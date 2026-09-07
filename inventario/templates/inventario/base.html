@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}RataStock ES2{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f3f6f9; color: #243447; font-family: Arial, sans-serif; line-height: 1.5; }
+        header { background: #173a5e; color: #fff; }
+        nav { display: flex; gap: 1rem; align-items: center; max-width: 1100px; margin: auto; padding: 1rem; }
+        nav strong { margin-right: auto; font-size: 1.15rem; }
+        nav a { color: #fff; text-decoration: none; }
+        main { width: min(1100px, calc(100% - 2rem)); margin: 2rem auto; }
+        .tarjeta { padding: 1.5rem; background: #fff; border: 1px solid #dce5ed; border-radius: 10px; box-shadow: 0 5px 18px rgba(23, 58, 94, 0.07); }
+        h1 { margin-top: 0; color: #173a5e; }
+        .acciones { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .boton, button { display: inline-block; padding: 0.65rem 0.9rem; border: 0; border-radius: 6px; background: #2f6fa8; color: #fff; font: inherit; text-decoration: none; cursor: pointer; }
+        .secundario { background: #687b8d; }
+        .peligro { background: #a93434; }
+        form p { display: grid; gap: 0.3rem; max-width: 560px; }
+        input, textarea, select { width: 100%; padding: 0.65rem; border: 1px solid #b9c8d5; border-radius: 6px; font: inherit; }
+        input[type="checkbox"] { width: auto; }
+        .tabla { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem; border-bottom: 1px solid #dfe6ec; text-align: left; }
+        th { background: #173a5e; color: #fff; }
+        @media (max-width: 700px) { nav { align-items: flex-start; flex-direction: column; } nav strong { margin-right: 0; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <strong>RataStock ES2</strong>
+            <a href="{% url 'inventario:lista_productos' %}">Productos</a>
+            <a href="{% url 'inventario:crear_producto' %}">Nuevo producto</a>
+            <a href="{% url 'admin:index' %}">Django Admin</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -18,7 +18,7 @@
 
 # Sprint 3 — CRUD
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** crear listado, alta, edición y eliminación de productos.
 

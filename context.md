@@ -35,7 +35,7 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 
 ## Estado actual
 
-Sprints 1 y 2 completados.
+Sprints 1, 2 y 3 completados.
 
 Django:
 
@@ -86,12 +86,42 @@ Pruebas realizadas desde Django Admin:
 Estas operaciones administrativas no reemplazan el CRUD propio requerido en
 el Sprint 3.
 
+CRUD propio:
+
+- CREATE: `crear_producto()`;
+- READ: `lista_productos()`;
+- UPDATE: `editar_producto()`;
+- DELETE: `eliminar_producto()`.
+
+Formularios: `ProductoForm` basado en `ModelForm`.
+
+Templates:
+
+- `base.html`;
+- `lista_productos.html`;
+- `formulario_producto.html`;
+- `confirmar_eliminar.html`.
+
+Rutas:
+
+- `/productos/`;
+- `/productos/nuevo/`;
+- `/productos/<id>/editar/`;
+- `/productos/<id>/eliminar/`.
+
+Persistencia: Django ORM → SQLite3.
+
+Seguridad actual:
+
+- CSRF activo en formularios;
+- DELETE requiere confirmación y POST.
+
 Pendiente:
 
-- CRUD propio;
-- templates;
 - login y logout propios;
-- protección de vistas.
+- sesiones de la interfaz propia;
+- `login_required`;
+- protección del CRUD;
 - pruebas finales.
 
 ## Alcance
