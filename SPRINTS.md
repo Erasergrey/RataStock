@@ -24,9 +24,12 @@
 
 # Sprint 4 — Autenticación, sesiones y seguridad
 
-**Estado:** PENDIENTE
+**Estado:** EN VALIDACIÓN
 
 **Objetivo:** login, logout, sesiones, CSRF y protección de vistas.
+
+Implementación y pruebas anónimas completadas. Pendiente validación con el
+superusuario local, CRUD autenticado, sesión, Admin y logout antes del cierre.
 
 # Sprint 5 — Interfaz, pruebas y entrega
 

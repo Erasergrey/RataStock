@@ -37,6 +37,12 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 
 Sprints 1, 2 y 3 completados.
 
+Sprint 4 implementado y en validación. Falta la prueba de login con el
+superusuario local, CRUD autenticado, persistencia de sesión, regresión del
+Admin autenticado y logout. No cerrar el Sprint hasta completar estas pruebas.
+Por solicitud expresa del usuario, se registra la implementación en un commit
+sin dar por superadas las pruebas pendientes. Sprint 5 permanece pendiente.
+
 Django:
 
 - proyecto `ratastock` creado;
@@ -113,16 +119,50 @@ Persistencia: Django ORM → SQLite3.
 
 Seguridad actual:
 
-- CSRF activo en formularios;
+- Django Auth y Django Sessions nativos;
+- `LoginView` en `/login/` con conservación de `next`;
+- `LogoutView` en `/logout/` exclusivamente mediante POST;
+- las cuatro vistas CRUD protegidas con `login_required`;
+- navegación condicionada por `user.is_authenticated`;
+- CSRF activo en login, formularios CRUD y logout;
 - DELETE requiere confirmación y POST.
 
-Pendiente:
+Flujo implementado:
 
-- login y logout propios;
-- sesiones de la interfaz propia;
-- `login_required`;
-- protección del CRUD;
-- pruebas finales.
+Usuario sin sesión → login → autenticación → sesión Django → CRUD → logout
+→ sesión finalizada.
+
+Validaciones realizadas del Sprint 4:
+
+- `manage.py check`: sin incidencias;
+- login anónimo: HTTP 200;
+- cuatro rutas CRUD anónimas: HTTP 302 al login conservando `next`;
+- credenciales inválidas: errores visibles y sin autenticación;
+- logout GET: HTTP 405;
+- POST sin CSRF: HTTP 403;
+- `makemigrations --check --dry-run`: sin cambios;
+- migración `sessions.0001_initial` aplicada;
+- modelo, migración inicial y configuración del Admin sin cambios;
+- `.env`, SQLite y entorno virtual siguen ignorados por Git.
+
+Pendiente para cerrar Sprint 4:
+
+- el usuario debe autenticarse directamente en `/login/` sin compartir credenciales;
+- verificar login real, sesión, CRUD temporal y Admin con ese superusuario;
+- verificar logout POST y bloqueo posterior del CRUD;
+- eliminar el único producto temporal de autenticación si se crea;
+- confirmar que el producto original permanece intacto;
+- revisión final y cierre documental después de superar las pruebas.
+
+Pendiente para Sprint 5:
+
+- mejoras visuales;
+- formato de precios y separadores de miles;
+- alineación del campo Activo;
+- responsive de tabla;
+- QA final;
+- GitHub;
+- documentación final.
 
 ## Alcance
 
