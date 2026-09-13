@@ -26,8 +26,7 @@ RataStock ES2 es una aplicación académica desarrollada con Django para gestion
 
 ## Estado
 
-Sprint 3 completado. Sprint 4 implementado, pendiente de validación autenticada
-con el superusuario local antes de su cierre. Sprint 5 pendiente.
+Sprint 4 completado. Sprint 5 pendiente y no iniciado.
 
 Django y SQLite están configurados, el modelo `Producto` está implementado y
 puede administrarse desde Django Admin mediante un superusuario local. La
@@ -39,5 +38,8 @@ sesiones, protección de las cuatro vistas CRUD y CSRF. El login está en
 `/login/` y el logout requiere POST a `/logout/`. Las credenciales se ingresan
 directamente en la aplicación y no deben almacenarse en Git.
 
-Falta verificar el login real, la navegación autenticada, el CRUD temporal,
-Django Admin y el logout antes de marcar el Sprint 4 como completado.
+El usuario confirmó las pruebas manuales de login, persistencia de sesión,
+CRUD autenticado, Django Admin y logout POST con bloqueo posterior del CRUD.
+Las validaciones técnicas finales pasaron, sin migraciones nuevas y con
+Sessions aplicada. El producto original permanece intacto y no quedan
+productos temporales del Sprint 4.

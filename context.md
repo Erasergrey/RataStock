@@ -35,13 +35,11 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 
 ## Estado actual
 
-Sprints 1, 2 y 3 completados.
+Sprints 1, 2, 3 y 4 completados.
 
-Sprint 4 implementado y en validación. Falta la prueba de login con el
-superusuario local, CRUD autenticado, persistencia de sesión, regresión del
-Admin autenticado y logout. No cerrar el Sprint hasta completar estas pruebas.
-Por solicitud expresa del usuario, se registra la implementación en un commit
-sin dar por superadas las pruebas pendientes. Sprint 5 permanece pendiente.
+Sprint 4 cerrado con las pruebas manuales autenticadas confirmadas por el
+usuario y las validaciones técnicas finales verificadas. Sprint 5 permanece
+pendiente y no se inicia en este cierre.
 
 Django:
 
@@ -145,14 +143,28 @@ Validaciones realizadas del Sprint 4:
 - modelo, migración inicial y configuración del Admin sin cambios;
 - `.env`, SQLite y entorno virtual siguen ignorados por Git.
 
-Pendiente para cerrar Sprint 4:
+Pruebas manuales autenticadas confirmadas por el usuario:
 
-- el usuario debe autenticarse directamente en `/login/` sin compartir credenciales;
-- verificar login real, sesión, CRUD temporal y Admin con ese superusuario;
-- verificar logout POST y bloqueo posterior del CRUD;
-- eliminar el único producto temporal de autenticación si se crea;
-- confirmar que el producto original permanece intacto;
-- revisión final y cierre documental después de superar las pruebas.
+- login correcto y listado accesible con sesión;
+- sesión persistente durante la navegación;
+- CREATE, READ y UPDATE autenticados correctos;
+- DELETE mediante POST correcto;
+- Django Admin funcionando;
+- logout mediante POST correcto;
+- acceso a `/productos/` después del logout redirige nuevamente al login.
+
+Verificación final de cierre:
+
+- `manage.py check`: sin incidencias;
+- `makemigrations --check --dry-run`: `No changes detected`;
+- `sessions.0001_initial`: aplicada;
+- el producto original conserva todos sus campos respecto de la referencia previa;
+- se detectó y eliminó exclusivamente el registro temporal de autenticación
+  todavía presente al verificar la base local; queda 1 producto legítimo y
+  ningún producto temporal del Sprint 4;
+- `.env` y `db.sqlite3` no están versionados;
+- revisión de código y documentación sin credenciales detectadas;
+- sin cambios en modelo, migración inicial ni `admin.py`.
 
 Pendiente para Sprint 5:
 

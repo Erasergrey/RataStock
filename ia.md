@@ -35,8 +35,12 @@ Se analizó el enunciado y se decidió mantener un proyecto pequeño centrado en
 | 3 | ¿Cuál es la estructura mínima para implementar un CRUD de Producto en Django mediante vistas basadas en funciones y ModelForm? | Crear un `ModelForm`, cuatro vistas, URLs y templates conectados al ORM. | Usar vistas basadas en funciones para hacer explícitas las operaciones CRUD y descartar DRF, ViewSets, API, JavaScript y clases genéricas. DELETE requiere confirmación y POST. |
 | 4 | ¿Cuál es la forma más simple y segura de proteger un CRUD Django mediante autenticación y sesiones nativas sin implementar un sistema de usuarios personalizado? | Utilizar Django Auth, Django Sessions, LoginView, LogoutView, login_required y CSRF. | Se utilizaron las herramientas nativas de Django para evitar implementar manualmente contraseñas, sesiones o autenticación. Se descartaron JWT, OAuth, API tokens, usuario personalizado y roles complejos por ser innecesarios. |
 
-La implementación del Sprint 4 está en validación: las pruebas anónimas,
-CSRF y migraciones pasaron; falta la prueba autenticada con el superusuario
-local antes de cerrar el Sprint. No se almacenaron credenciales en Git ni se
-modificó la contraseña existente. El usuario debe iniciar sesión directamente
-en el navegador sin compartir sus credenciales en el chat o la documentación.
+Sprint 4 completado: las pruebas anónimas, CSRF y migraciones pasaron. El
+usuario confirmó las pruebas manuales de login, sesión, CRUD autenticado,
+Django Admin y logout POST con bloqueo posterior del CRUD. En la verificación
+final se limpió exclusivamente el producto temporal de autenticación que aún
+permanecía en la base local, preservando el producto original.
+
+No se almacenaron credenciales en Git ni se modificó la contraseña existente.
+Las credenciales se ingresan directamente en la aplicación, sin compartirlas
+en el chat o la documentación. Sprint 5 permanece pendiente.
