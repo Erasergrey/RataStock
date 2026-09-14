@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count, Q, Sum
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ProductoForm
@@ -8,10 +9,16 @@ from .models import Producto
 @login_required
 def lista_productos(request):
     productos = Producto.objects.all().order_by("nombre")
+    estadisticas = productos.aggregate(
+        total_productos=Count("pk"),
+        productos_activos=Count("pk", filter=Q(activo=True)),
+        productos_sin_stock=Count("pk", filter=Q(stock=0)),
+        stock_total=Sum("stock", default=0),
+    )
     return render(
         request,
         "inventario/lista_productos.html",
-        {"productos": productos},
+        {"productos": productos, **estadisticas},
     )
 
 

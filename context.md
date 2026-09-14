@@ -35,11 +35,10 @@ La versión anterior de RataStock evaluaba solicitudes utilizando un stock ingre
 
 ## Estado actual
 
-Sprints 1, 2, 3 y 4 completados.
+Sprints 1, 2, 3, 4 y 5 completados.
 
-Sprint 4 cerrado con las pruebas manuales autenticadas confirmadas por el
-usuario y las validaciones técnicas finales verificadas. Sprint 5 permanece
-pendiente y no se inicia en este cierre.
+Sprint 5 cerró el rediseño visual y QA final. La aplicación conserva Django,
+SQLite, ORM, Auth y Sessions; no se incorporaron React, Vite ni Firebase.
 
 Django:
 
@@ -166,15 +165,22 @@ Verificación final de cierre:
 - revisión de código y documentación sin credenciales detectadas;
 - sin cambios en modelo, migración inicial ni `admin.py`.
 
-Pendiente para Sprint 5:
+Sprint 5 — interfaz, QA y cierre:
 
-- mejoras visuales;
-- formato de precios y separadores de miles;
-- alineación del campo Activo;
-- responsive de tabla;
-- QA final;
-- GitHub;
-- documentación final.
+- rediseño navy/azul propio inspirado únicamente en principios visuales de
+  MyCodeBank, un proyecto previo del estudiante;
+- dashboard de inventario en /productos/ con métricas de lectura obtenidas
+  desde Producto: total, activos, sin stock y stock total;
+- formato CLP mediante el filtro clp, sin cambiar DecimalField ni datos;
+- tabla con badges, indicador de sin stock, acciones compactas y
+  desplazamiento horizontal accesible;
+- formularios, confirmación de eliminación y login rediseñados;
+- checkbox Activo alineado con su etiqueta;
+- sidebar de escritorio y navegación compacta bajo 980 px; tarjetas a dos
+  columnas bajo 1200 px y a una bajo 600 px;
+- QA funcional final: check y migraciones correctos; rutas anónimas,
+  Auth/Sessions, CRUD, Admin y logout verificados; temporal eliminado y
+  producto original intacto.
 
 ## Alcance
 

@@ -1,27 +1,21 @@
 {% extends "inventario/base.html" %}
-
 {% block title %}Iniciar sesión | RataStock ES2{% endblock %}
-
 {% block content %}
-<section class="tarjeta">
-    <h1>Iniciar sesión</h1>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-            <div role="alert">{{ form.non_field_errors }}</div>
-        {% endif %}
-        <p>
-            <label for="{{ form.username.id_for_label }}">Usuario:</label>
-            {{ form.username }}
-            {{ form.username.errors }}
-        </p>
-        <p>
-            <label for="{{ form.password.id_for_label }}">Contraseña:</label>
-            {{ form.password }}
-            {{ form.password.errors }}
-        </p>
-        <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit">Ingresar</button>
-    </form>
-</section>
+<div class="login-page">
+    <div class="login-brand"><span class="brand-mark" aria-hidden="true">R<span>·</span></span><span>RataStock <span class="muted">ES2</span></span></div>
+    <section class="card login-card">
+        <p class="eyebrow">BIENVENIDO A RATASTOCK</p>
+        <h1>Acceso al inventario</h1>
+        <p class="muted form-intro">Inicia sesión para gestionar tus productos.</p>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="form-errors" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+            <div class="field"><label for="{{ form.username.id_for_label }}">Usuario</label>{{ form.username }}{% if form.username.errors %}<div class="field-errors" role="alert">{{ form.username.errors }}</div>{% endif %}</div>
+            <div class="field"><label for="{{ form.password.id_for_label }}">Contraseña</label>{{ form.password }}{% if form.password.errors %}<div class="field-errors" role="alert">{{ form.password.errors }}</div>{% endif %}</div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="button login-button" type="submit">Ingresar <span aria-hidden="true">→</span></button>
+        </form>
+    </section>
+    <p class="login-footer">RataStock ES2 · Gestión de inventario</p>
+</div>
 {% endblock %}

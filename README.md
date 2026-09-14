@@ -26,7 +26,7 @@ RataStock ES2 es una aplicación académica desarrollada con Django para gestion
 
 ## Estado
 
-Sprint 4 completado. Sprint 5 pendiente y no iniciado.
+Sprint 5 completado.
 
 Django y SQLite están configurados, el modelo `Producto` está implementado y
 puede administrarse desde Django Admin mediante un superusuario local. La
@@ -43,3 +43,18 @@ CRUD autenticado, Django Admin y logout POST con bloqueo posterior del CRUD.
 Las validaciones técnicas finales pasaron, sin migraciones nuevas y con
 Sessions aplicada. El producto original permanece intacto y no quedan
 productos temporales del Sprint 4.
+
+## Interfaz y dashboard
+
+La interfaz propia se implementa con HTML/CSS mediante Django Templates. El
+listado /productos/ funciona como dashboard de inventario y presenta total de
+productos, activos, sin stock y stock total calculados desde el modelo
+existente. Los precios se muestran en CLP con separador de miles.
+
+El diseño usa una paleta navy/azul, sidebar adaptativa, tarjetas, tabla
+responsive, badges de estado y formularios coherentes. Django, SQLite, ORM,
+Auth, Sessions, Admin y la semántica del CRUD se mantienen sin cambios de
+arquitectura.
+
+MyCodeBank se usó únicamente como referencia visual de un proyecto previo del
+estudiante. RataStock no incorpora React, Vite, Firebase ni lógica bancaria.

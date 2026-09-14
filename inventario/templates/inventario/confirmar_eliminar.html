@@ -1,17 +1,18 @@
 {% extends "inventario/base.html" %}
-
 {% block title %}Eliminar producto | RataStock ES2{% endblock %}
-
 {% block content %}
-<section class="tarjeta">
-    <h1>Eliminar producto</h1>
-    <p>¿Está seguro de eliminar el producto <strong>{{ producto.nombre }}</strong>?</p>
-    <form method="post">
-        {% csrf_token %}
-        <div class="acciones">
-            <button class="peligro" type="submit">Eliminar</button>
-            <a class="boton secundario" href="{% url 'inventario:lista_productos' %}">Cancelar</a>
-        </div>
-    </form>
-</section>
+<div class="form-page delete-page">
+    <a class="back-link" href="{% url 'inventario:lista_productos' %}">← Volver al inventario</a>
+    <section class="card form-card delete-card">
+        <span class="warning-symbol" aria-hidden="true">!</span>
+        <p class="eyebrow danger-text">CONFIRMACIÓN REQUERIDA</p>
+        <h1>Eliminar producto</h1>
+        <p>¿Estás seguro de que deseas eliminar <strong>“{{ producto.nombre }}”</strong>?</p>
+        <p class="delete-warning">Esta acción no se puede deshacer.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-actions"><a class="button button--secondary" href="{% url 'inventario:lista_productos' %}">Cancelar</a><button class="button button--danger" type="submit">Eliminar producto</button></div>
+        </form>
+    </section>
+</div>
 {% endblock %}

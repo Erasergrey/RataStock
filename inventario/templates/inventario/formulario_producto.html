@@ -1,17 +1,33 @@
 {% extends "inventario/base.html" %}
-
 {% block title %}{{ titulo }} | RataStock ES2{% endblock %}
-
 {% block content %}
-<section class="tarjeta">
-    <h1>{{ titulo }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="acciones">
-            <button type="submit">Guardar</button>
-            <a class="boton secundario" href="{% url 'inventario:lista_productos' %}">Cancelar</a>
-        </div>
-    </form>
-</section>
+<div class="form-page">
+    <a class="back-link" href="{% url 'inventario:lista_productos' %}">← Volver al inventario</a>
+    <section class="card form-card">
+        <p class="eyebrow">GESTIÓN DE INVENTARIO</p>
+        <h1>{{ titulo }}</h1>
+        <p class="muted form-intro">Completa la información del producto. Nombre, stock y precio son obligatorios.</p>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="form-errors" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+            <div class="form-grid">
+            {% for field in form %}
+                {% if field.name == 'activo' %}
+                <div class="field field--full">
+                    <label class="checkbox-field" for="{{ field.id_for_label }}">{{ field }} <span>Producto activo</span></label>
+                    {% if field.errors %}<div class="field-errors" role="alert">{{ field.errors }}</div>{% endif %}
+                </div>
+                {% else %}
+                <div class="field{% if field.name == 'nombre' or field.name == 'descripcion' %} field--full{% endif %}">
+                    <label for="{{ field.id_for_label }}">{% if field.name == 'descripcion' %}Descripción <span class="optional">(opcional)</span>{% elif field.name == 'precio' %}Precio <span class="optional">(CLP)</span>{% else %}{{ field.label }}{% endif %}</label>
+                    {{ field }}
+                    {% if field.errors %}<div class="field-errors" role="alert">{{ field.errors }}</div>{% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="form-actions"><a class="button button--secondary" href="{% url 'inventario:lista_productos' %}">Cancelar</a><button class="button" type="submit">Guardar</button></div>
+        </form>
+    </section>
+</div>
 {% endblock %}

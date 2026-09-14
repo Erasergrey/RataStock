@@ -1,53 +1,50 @@
+{% load static %}
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
     <title>{% block title %}RataStock ES2{% endblock %}</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { margin: 0; background: #f3f6f9; color: #243447; font-family: Arial, sans-serif; line-height: 1.5; }
-        header { background: #173a5e; color: #fff; }
-        nav { display: flex; gap: 1rem; align-items: center; max-width: 1100px; margin: auto; padding: 1rem; }
-        nav strong { margin-right: auto; font-size: 1.15rem; }
-        nav a { color: #fff; text-decoration: none; }
-        main { width: min(1100px, calc(100% - 2rem)); margin: 2rem auto; }
-        .tarjeta { padding: 1.5rem; background: #fff; border: 1px solid #dce5ed; border-radius: 10px; box-shadow: 0 5px 18px rgba(23, 58, 94, 0.07); }
-        h1 { margin-top: 0; color: #173a5e; }
-        .acciones { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .boton, button { display: inline-block; padding: 0.65rem 0.9rem; border: 0; border-radius: 6px; background: #2f6fa8; color: #fff; font: inherit; text-decoration: none; cursor: pointer; }
-        .secundario { background: #687b8d; }
-        .peligro { background: #a93434; }
-        form p { display: grid; gap: 0.3rem; max-width: 560px; }
-        input, textarea, select { width: 100%; padding: 0.65rem; border: 1px solid #b9c8d5; border-radius: 6px; font: inherit; }
-        input[type="checkbox"] { width: auto; }
-        .tabla { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 0.75rem; border-bottom: 1px solid #dfe6ec; text-align: left; }
-        th { background: #173a5e; color: #fff; }
-        @media (max-width: 700px) { nav { align-items: flex-start; flex-direction: column; } nav strong { margin-right: 0; } }
-    </style>
+    <link rel="stylesheet" href="{% static 'inventario/estilos.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <strong>RataStock ES2</strong>
-            {% if user.is_authenticated %}
-            <a href="{% url 'inventario:lista_productos' %}">Productos</a>
-            <a href="{% url 'inventario:crear_producto' %}">Nuevo producto</a>
-            <a href="{% url 'admin:index' %}">Django Admin</a>
-            <span>Usuario: {{ user.username }}</span>
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">Cerrar sesión</button>
-            </form>
-            {% else %}
-            <a href="{% url 'login' %}">Iniciar sesión</a>
-            {% endif %}
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="app-layout{% if not user.is_authenticated %} app-layout--public{% endif %}">
+    {% if user.is_authenticated %}
+    <aside class="sidebar" aria-label="Navegación principal">
+        <a class="brand" href="{% url 'inventario:lista_productos' %}">
+            <span class="brand-mark" aria-hidden="true">R<span>·</span></span>
+            <span><strong>RataStock</strong><small>INVENTARIO · ES2</small></span>
+        </a>
+        <div class="sidebar-menu">
+            <p class="nav-label">ESPACIO DE TRABAJO</p>
+            <nav>
+                <a class="nav-item{% if request.resolver_match.url_name != 'crear_producto' %} is-active{% endif %}" {% if request.resolver_match.url_name == 'lista_productos' %}aria-current="page"{% endif %} href="{% url 'inventario:lista_productos' %}"><span aria-hidden="true">▦</span> Inventario</a>
+                <a class="nav-item{% if request.resolver_match.url_name == 'crear_producto' %} is-active{% endif %}" {% if request.resolver_match.url_name == 'crear_producto' %}aria-current="page"{% endif %} href="{% url 'inventario:crear_producto' %}"><span aria-hidden="true">＋</span> Nuevo producto</a>
+                <a class="nav-item" href="{% url 'admin:index' %}"><span aria-hidden="true">⚙</span> Django Admin</a>
+            </nav>
+        </div>
+        <div class="sidebar-footer">
+            <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="nav-item logout" type="submit"><span aria-hidden="true">↪</span> Cerrar sesión</button></form>
+            <p>RataStock ES2 · Proyecto académico</p>
+        </div>
+    </aside>
+    {% endif %}
+    <div class="workspace">
+        {% if user.is_authenticated %}
+        <header class="app-header">
+            <div><p class="header-title">Inventario</p><p class="muted">Gestión de productos</p></div>
+            <div class="identity">
+                <span class="avatar" aria-hidden="true">{{ user.username|slice:":2"|upper }}</span>
+                <div><strong>{{ user.username }}</strong><small>{% if user.is_superuser %}Administrador{% else %}Usuario{% endif %}</small></div>
+            </div>
+        </header>
+        {% endif %}
+        <main id="contenido" class="main{% if not user.is_authenticated %} main--public{% endif %}" tabindex="-1">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</div>
 </body>
 </html>

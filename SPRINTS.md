@@ -35,6 +35,11 @@ producto original.
 
 # Sprint 5 — Interfaz, pruebas y entrega
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** mejoras visuales, QA, documentación, GitHub y entrega.
+
+Rediseño propio HTML/CSS completado: dashboard de inventario, métricas de
+lectura, formato CLP, tabla responsive, formularios, login y confirmación de
+eliminación. QA funcional, Auth/Sessions, Admin y limpieza del producto
+temporal verificados. Sin React, Vite ni Firebase.

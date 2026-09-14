@@ -34,6 +34,7 @@ Se analizó el enunciado y se decidió mantener un proyecto pequeño centrado en
 | 2 | ¿Qué configuración mínima de Django Admin permite demostrar correctamente la administración de un modelo Producto sin agregar funciones innecesarias? | Registrar Producto, mostrar campos relevantes, permitir búsqueda por nombre y filtro por estado activo. | Usar una configuración básica y descartar acciones personalizadas, exportaciones y dashboards. Las credenciales del superusuario permanecen locales y no se documentan ni versionan. |
 | 3 | ¿Cuál es la estructura mínima para implementar un CRUD de Producto en Django mediante vistas basadas en funciones y ModelForm? | Crear un `ModelForm`, cuatro vistas, URLs y templates conectados al ORM. | Usar vistas basadas en funciones para hacer explícitas las operaciones CRUD y descartar DRF, ViewSets, API, JavaScript y clases genéricas. DELETE requiere confirmación y POST. |
 | 4 | ¿Cuál es la forma más simple y segura de proteger un CRUD Django mediante autenticación y sesiones nativas sin implementar un sistema de usuarios personalizado? | Utilizar Django Auth, Django Sessions, LoginView, LogoutView, login_required y CSRF. | Se utilizaron las herramientas nativas de Django para evitar implementar manualmente contraseñas, sesiones o autenticación. Se descartaron JWT, OAuth, API tokens, usuario personalizado y roles complejos por ser innecesarios. |
+| 5 | ¿Cómo adaptar el lenguaje visual de un dashboard React existente (MyCodeBank) a una aplicación Django CRUD sin reutilizar su arquitectura frontend? | Reutilizar principios visuales: sidebar, tarjetas, paleta navy/azul, dashboard de métricas, responsive y tabla mejorada; no copiar React ni Firebase. | Se reutilizó únicamente la referencia de diseño de un proyecto previo del estudiante. RataStock mantuvo Django Templates, Django ORM, SQLite, Auth y Sessions. Se descartaron React, Vite, Firebase, lógica financiera y transacciones. |
 
 Sprint 4 completado: las pruebas anónimas, CSRF y migraciones pasaron. El
 usuario confirmó las pruebas manuales de login, sesión, CRUD autenticado,
@@ -43,4 +44,10 @@ permanecía en la base local, preservando el producto original.
 
 No se almacenaron credenciales en Git ni se modificó la contraseña existente.
 Las credenciales se ingresan directamente en la aplicación, sin compartirlas
-en el chat o la documentación. Sprint 5 permanece pendiente.
+en el chat o la documentación.
+
+Sprint 5 completado: MyCodeBank fue utilizado exclusivamente como referencia
+visual de un proyecto previo del estudiante. Se añadió una interfaz propia en
+HTML/CSS con dashboard, métricas de lectura, formato CLP y responsive; no se
+incorporaron su arquitectura React, Firebase, hooks, servicios ni lógica
+bancaria.

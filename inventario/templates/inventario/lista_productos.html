@@ -1,50 +1,46 @@
 {% extends "inventario/base.html" %}
-
-{% block title %}Productos | RataStock ES2{% endblock %}
-
+{% load formato %}
+{% block title %}Inventario | RataStock ES2{% endblock %}
 {% block content %}
-<section class="tarjeta">
-    <h1>Productos</h1>
-    <div class="acciones">
-        <a class="boton" href="{% url 'inventario:crear_producto' %}">Nuevo producto</a>
+<div class="page-heading">
+    <p class="eyebrow">VISTA GENERAL</p>
+    <h1>Tu inventario, bajo control.</h1>
+    <p class="muted">Consulta tus existencias y administra tus productos en un solo lugar.</p>
+</div>
+<dl class="metrics" aria-label="Resumen del inventario">
+    <div class="metric metric--primary"><dt><span>Productos</span><span class="metric-icon" aria-hidden="true">▦</span></dt><dd>{{ total_productos }}<small>Registrados en el inventario</small></dd></div>
+    <div class="metric"><dt><span>Activos</span><span class="metric-icon positive" aria-hidden="true">✓</span></dt><dd>{{ productos_activos }}<small>Con estado activo</small></dd></div>
+    <div class="metric"><dt><span>Sin stock</span><span class="metric-icon warning" aria-hidden="true">!</span></dt><dd>{{ productos_sin_stock }}<small>Productos sin existencias</small></dd></div>
+    <div class="metric"><dt><span>Stock total</span><span class="metric-icon" aria-hidden="true">≡</span></dt><dd>{{ stock_total }}<small>Unidades en el inventario</small></dd></div>
+</dl>
+<section class="card inventory-card" aria-labelledby="productos-titulo">
+    <div class="section-heading">
+        <div><h2 id="productos-titulo">Productos <span class="count">{{ total_productos }}</span></h2><p class="muted">Detalle de tu inventario actual.</p></div>
+        <a class="button" href="{% url 'inventario:crear_producto' %}"><span aria-hidden="true">＋</span> Nuevo producto</a>
     </div>
-
     {% if productos %}
-        <div class="tabla">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Stock</th>
-                        <th>Precio</th>
-                        <th>Estado</th>
-                        <th>Fecha de creación</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for producto in productos %}
-                        <tr>
-                            <td>{{ producto.id }}</td>
-                            <td>{{ producto.nombre }}</td>
-                            <td>{{ producto.stock }}</td>
-                            <td>${{ producto.precio }}</td>
-                            <td>{% if producto.activo %}Activo{% else %}Inactivo{% endif %}</td>
-                            <td>{{ producto.fecha_creacion|date:"d/m/Y H:i" }}</td>
-                            <td>
-                                <div class="acciones">
-                                    <a class="boton secundario" href="{% url 'inventario:editar_producto' producto.pk %}">Editar</a>
-                                    <a class="boton peligro" href="{% url 'inventario:eliminar_producto' producto.pk %}">Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <p class="table-hint" id="tabla-ayuda">Desliza la tabla para ver todas las columnas y acciones.</p>
+    <div class="table-responsive" role="region" aria-label="Tabla de productos" tabindex="0" aria-describedby="tabla-ayuda">
+        <table>
+            <caption class="sr-only">Productos registrados, existencias, precios en pesos chilenos y acciones</caption>
+            <thead><tr><th scope="col">Nombre</th><th scope="col">Stock</th><th scope="col">Precio <span class="unit">CLP</span></th><th scope="col">Estado</th><th scope="col" class="column-date">Fecha</th><th scope="col">Acciones</th></tr></thead>
+            <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <th scope="row" class="product-name">{{ producto.nombre }}</th>
+                    <td>{% if producto.stock == 0 %}<span class="badge badge--danger">Sin stock</span>{% else %}<span class="number">{{ producto.stock }}</span>{% endif %}</td>
+                    <td class="price">{{ producto.precio|clp }}</td>
+                    <td>{% if producto.activo %}<span class="badge badge--success">Activo</span>{% else %}<span class="badge badge--neutral">Inactivo</span>{% endif %}</td>
+                    <td class="column-date muted"><time datetime="{{ producto.fecha_creacion|date:'c' }}">{{ producto.fecha_creacion|date:"d/m/Y" }}</time></td>
+                    <td><div class="row-actions"><a class="button button--small button--secondary" href="{% url 'inventario:editar_producto' producto.pk %}" aria-label="Editar {{ producto.nombre }}">Editar</a><a class="button button--small button--danger-soft" href="{% url 'inventario:eliminar_producto' producto.pk %}" aria-label="Eliminar {{ producto.nombre }}">Eliminar</a></div></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-footer">{{ total_productos }} producto{{ total_productos|pluralize }} <span>Precios expresados en pesos chilenos</span></div>
     {% else %}
-        <p>No hay productos registrados.</p>
+    <div class="empty-state"><span class="empty-icon" aria-hidden="true">▦</span><h3>No hay productos registrados.</h3><p class="muted">Agrega tu primer producto para comenzar a gestionar el inventario.</p><a class="button button--secondary" href="{% url 'inventario:crear_producto' %}">Crear primer producto</a></div>
     {% endif %}
 </section>
 {% endblock %}
