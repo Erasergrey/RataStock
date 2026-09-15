@@ -115,10 +115,18 @@ respondieron 200 y la evidencia quedó en `pruebas/sprint5_documentacion.txt`.
 
 ## Sprint 6 — Render
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** preparar el despliegue de producción sin afectar el
 funcionamiento local.
+
+Se agregaron las dependencias de producción, PostgreSQL condicionado por
+`DATABASE_URL` con SQLite como respaldo local, WhiteNoise y `STATIC_ROOT`.
+`build.sh` instala dependencias, recopila estáticos y ejecuta migraciones; el
+inicio previsto usa Gunicorn con el worker de Uvicorn sobre ASGI. El QA local
+pasó sin migraciones nuevas y mantuvo operativos HTML, Admin, Swagger y JWT.
+El código está preparado, pero el servicio de Render todavía debe configurarse;
+no se declara un despliegue exitoso.
 
 ## Sprint 7 — QA y entrega
 

@@ -124,3 +124,41 @@ DELETE no staff y 204 para DELETE staff. La evidencia está en
 El listado usa paginación de 10 elementos. Se comprobaron los códigos 200,
 201, 204, 400, 401, 403 y 404. Nunca se deben guardar tokens reales ni
 contraseñas en código, documentación o evidencias.
+
+## Preparación para Render
+
+El proyecto está preparado para ejecutarse en Render, pero la creación y
+configuración del servicio se realizan por separado. No se afirma todavía un
+despliegue exitoso.
+
+La base de datos se selecciona mediante el entorno:
+
+- sin `DATABASE_URL`, el desarrollo local continúa usando `db.sqlite3`;
+- con `DATABASE_URL`, Render usa PostgreSQL mediante `dj-database-url` y
+  `psycopg`.
+
+Variables de entorno requeridas en Render:
+
+| Variable | Configuración |
+|---|---|
+| `SECRET_KEY` | Valor secreto generado para producción |
+| `DATABASE_URL` | URL interna de la base PostgreSQL de Render |
+| `DEBUG` | `False` |
+
+Render proporciona `RENDER_EXTERNAL_HOSTNAME`, que se agrega a
+`ALLOWED_HOSTS`. No se deben guardar valores reales en Git ni en evidencias.
+
+Comando de construcción:
+
+```bash
+./build.sh
+```
+
+El script instala `requirements.txt`, recopila archivos estáticos y aplica las
+migraciones. WhiteNoise sirve los archivos generados en `STATIC_ROOT`.
+
+Comando de inicio:
+
+```bash
+python -m gunicorn ratastock.asgi:application -k uvicorn.workers.UvicornWorker
+```

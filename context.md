@@ -250,9 +250,9 @@ El Sprint 1 incorporó:
 - paginación global `PageNumberPagination` con 10 elementos por página;
 - las cuatro migraciones oficiales de `authtoken`.
 
-Se agregará en Sprints posteriores:
+Queda para el Sprint final:
 
-- preparación de despliegue, QA final y evidencias de entrega.
+- QA final y evidencias de entrega.
 
 El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
 `DefaultRouter`. La API está disponible en `/api/productos/` y
@@ -283,6 +283,21 @@ rutas respondieron 200 y Swagger cargó correctamente. README documenta los
 endpoints, JWT access/refresh, el encabezado Bearer, permisos, paginación y
 códigos HTTP. La evidencia se guarda en `pruebas/sprint5_documentacion.txt` sin
 credenciales ni tokens.
+
+El Sprint 6 preparó el proyecto para Render sin realizar todavía un despliegue.
+La configuración usa PostgreSQL mediante `DATABASE_URL` cuando la variable
+existe y conserva SQLite como respaldo local. `DEBUG` y `SECRET_KEY` continúan
+obteniéndose del entorno; `RENDER_EXTERNAL_HOSTNAME` configura el host permitido
+en Render. WhiteNoise sirve los archivos estáticos recopilados en `STATIC_ROOT`.
+El script `build.sh` instala dependencias, ejecuta `collectstatic` y aplica las
+migraciones. El comando de inicio previsto es
+`python -m gunicorn ratastock.asgi:application -k uvicorn.workers.UvicornWorker`.
+
+El QA local del Sprint 6 confirmó `manage.py check`, ausencia de migraciones
+nuevas, recopilación de estáticos, login, listado HTML, Admin, Swagger y API con
+JWT. También se comprobó la selección de PostgreSQL con variables ficticias,
+sin conectarse a un servicio externo ni exponer secretos. El producto original
+quedó intacto y el usuario temporal fue eliminado.
 
 La configuración segura se definió antes de exponer recursos: no se utilizó
 `AllowAny` global y los endpoints de productos requieren autenticación JWT.
