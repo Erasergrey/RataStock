@@ -75,3 +75,18 @@ Sprint 2 completado: `ProductoSerializer` y `ProductoViewSet` exponen el modelo
 existente mediante `/api/productos/` y `/api/productos/<id>/`. La API requiere
 autenticación y convive con el CRUD HTML y Django Admin, que permanecen
 operativos. El endpoint para obtener tokens todavía no está implementado.
+
+### Respuestas HTTP comprobadas
+
+| Código | Caso validado |
+|---|---|
+| 200 | Listado y detalle; actualización mediante PUT y PATCH |
+| 201 | Creación válida de un producto temporal |
+| 204 | Eliminación del producto temporal |
+| 400 | Rechazo de un producto con stock negativo y error en `stock` |
+| 401 | Solicitud a la API sin autenticación |
+| 404 | Consulta de un ID inexistente |
+
+Las pruebas usan JSON paginado, no desactivan validaciones y eliminan sus datos
+temporales al finalizar. La evidencia de Sprint 3 está en
+`pruebas/sprint3_api.txt`.

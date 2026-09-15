@@ -1,0 +1,26 @@
+RataStock EVA3 - Sprint 3
+Evidencia de respuestas de la API de productos
+
+Cliente utilizado: DRF APIClient con force_authenticate.
+Endpoint de colección: /api/productos/
+Endpoint de detalle: /api/productos/<id>/
+
+Resultados comprobados:
+- GET autenticado de colección: 200 OK, JSON paginado.
+- POST válido: 201 Created.
+- GET autenticado de detalle: 200 OK.
+- PATCH válido: 200 OK.
+- PUT válido: 200 OK.
+- DELETE del producto temporal: 204 No Content.
+- POST con stock = -1: 400 Bad Request, error asociado al campo stock.
+- GET de un ID inexistente: 404 Not Found.
+- GET sin autenticación: 401 Unauthorized.
+
+Limpieza y regresión:
+- El producto temporal fue eliminado.
+- El producto original quedó intacto.
+- Login, CRUD HTML y Django Admin continuaron respondiendo correctamente.
+- python manage.py check: sin problemas.
+- makemigrations --check --dry-run: No changes detected.
+
+Este archivo no contiene credenciales, tokens ni datos sensibles.

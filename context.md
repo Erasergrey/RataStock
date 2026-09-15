@@ -261,6 +261,14 @@ El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
 pantallas HTML y la API trabajan sobre el mismo modelo `Producto`, sin duplicar
 la lógica CRUD manual ni crear un modelo adicional.
 
+El Sprint 3 validó las respuestas JSON reales mediante `APIClient` y
+`force_authenticate`: 200 para listado, detalle y actualizaciones; 201 para
+creación; 204 para eliminación; 400 ante stock negativo; 401 sin autenticación;
+y 404 para un recurso inexistente. El listado devuelve JSON paginado. Las
+pruebas utilizaron un producto temporal, eliminado al finalizar, y conservaron
+intacto el producto original. La evidencia se guarda en
+`pruebas/sprint3_api.txt`.
+
 La configuración segura se definió antes de exponer recursos: no se utilizó
 `AllowAny`, por lo que los endpoints requieren autenticación. Todavía no existe
 un endpoint para obtener tokens, JWT, permisos personalizados, Swagger ni

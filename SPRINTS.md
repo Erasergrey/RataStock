@@ -78,10 +78,15 @@ trabajan sobre el mismo modelo; todavía no existe endpoint de tokens.
 
 ## Sprint 3 — JSON y códigos HTTP
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** probar GET, POST, PUT/PATCH, DELETE y las respuestas 200, 201,
 204, 400 y 404.
+
+Se validaron además 401 sin autenticación, JSON paginado y errores entendibles
+para stock negativo. La prueba controlada cubrió colección y detalle mediante
+`APIClient`, eliminó todos los datos temporales y dejó evidencia en
+`pruebas/sprint3_api.txt`.
 
 ## Sprint 4 — Autenticación y permisos
 
