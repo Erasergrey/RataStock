@@ -67,14 +67,14 @@ EVA2.
 
 Rama de desarrollo: `eva3`.
 
-Sprint 1 completado: Django REST Framework 3.18.1 y `authtoken` están
-configurados con `TokenAuthentication`, `IsAuthenticated` y paginación de 10
-elementos.
+Sprint 1 completado: Django REST Framework 3.18.1 y `authtoken` fueron
+configurados inicialmente con `TokenAuthentication`, `IsAuthenticated` y
+paginación de 10 elementos. Sprint 4 reemplazó esa autenticación por JWT.
 
 Sprint 2 completado: `ProductoSerializer` y `ProductoViewSet` exponen el modelo
 existente mediante `/api/productos/` y `/api/productos/<id>/`. La API requiere
 autenticación y convive con el CRUD HTML y Django Admin, que permanecen
-operativos. El endpoint para obtener tokens todavía no está implementado.
+operativos.
 
 ### Respuestas HTTP comprobadas
 
@@ -97,6 +97,7 @@ La API usa JWT mediante Simple JWT 5.5.1:
 
 - `POST /api/token/` obtiene los tokens access y refresh;
 - `POST /api/token/refresh/` renueva el token access;
+- el token access se envía como `Authorization: Bearer <token>`;
 - todas las operaciones de productos requieren autenticación;
 - GET, POST, PUT y PATCH están disponibles para usuarios autenticados;
 - DELETE está restringido a usuarios staff.
@@ -104,3 +105,22 @@ La API usa JWT mediante Simple JWT 5.5.1:
 Se comprobaron respuestas 401 para ausencia o invalidez del JWT, 403 para
 DELETE no staff y 204 para DELETE staff. La evidencia está en
 `pruebas/sprint4_seguridad.txt` y no contiene credenciales ni tokens.
+
+### Endpoints de la API
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/api/productos/` | Lista paginada de productos |
+| POST | `/api/productos/` | Crea un producto |
+| GET | `/api/productos/<id>/` | Obtiene un producto |
+| PUT | `/api/productos/<id>/` | Reemplaza un producto |
+| PATCH | `/api/productos/<id>/` | Actualiza parcialmente un producto |
+| DELETE | `/api/productos/<id>/` | Elimina un producto; solo staff |
+| POST | `/api/token/` | Obtiene access y refresh |
+| POST | `/api/token/refresh/` | Renueva el token access |
+| GET | `/api/schema/` | Genera el esquema OpenAPI |
+| GET | `/api/docs/` | Abre la documentación Swagger |
+
+El listado usa paginación de 10 elementos. Se comprobaron los códigos 200,
+201, 204, 400, 401, 403 y 404. Nunca se deben guardar tokens reales ni
+contraseñas en código, documentación o evidencias.

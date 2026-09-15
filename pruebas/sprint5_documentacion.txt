@@ -1,0 +1,16 @@
+RataStock EVA3 - Sprint 5
+Evidencia de documentacion OpenAPI y Swagger
+
+Endpoint probado     Codigo  Resultado esperado
+GET /api/schema/     200     Esquema OpenAPI generado correctamente
+GET /api/docs/       200     Interfaz Swagger renderizada correctamente
+
+Comprobaciones adicionales:
+- El esquema contiene las rutas de productos y autenticacion JWT.
+- Swagger carga su configuracion correctamente.
+- La API de productos sin JWT mantiene respuesta 401.
+- La API con JWT mantiene respuesta 200.
+- Login, sesiones, CRUD HTML y Django Admin siguen operativos.
+- El usuario temporal fue eliminado y el producto original quedo intacto.
+
+Este archivo no contiene contrasenas, credenciales ni valores de tokens.

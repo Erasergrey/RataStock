@@ -81,8 +81,20 @@ Durante EVA3, cada consulta relevante deberá documentar:
 | 2 | ¿Cómo exponer `Producto` como recurso REST sin duplicar el CRUD HTML? | Crear un `ModelSerializer`, un `ModelViewSet` y registrarlo con `DefaultRouter`. | Crear vistas API manuales separadas para cada verbo, porque duplicaría comportamiento que DRF ya resuelve y aumentaría el mantenimiento. | Reutilizar el modelo `Producto`, declarar los campos explícitamente y conservar `id` y `fecha_creacion` como solo lectura. |
 | 3 | ¿Cómo comprobar respuestas JSON y errores reales antes de habilitar un endpoint de tokens? | Usar `APIClient` con `force_authenticate`, datos temporales y aserciones sobre códigos y cuerpos JSON. | Desactivar validaciones o usar `@csrf_exempt`/`AllowAny` para evitar errores, porque reduciría la seguridad y ocultaría el comportamiento real de DRF. | Mantener validaciones y autenticación activas; comprobar 200, 201, 204, 400, 401 y 404 y eliminar los temporales. |
 | 4 | ¿Qué autenticación y permisos permiten proteger la API y diferenciar una operación destructiva? | Usar JWT con access/refresh y combinar `IsAuthenticated` con un permiso específico para DELETE. | Se descartó dejar `TokenAuthentication` permanente porque el token estándar no expira. | Implementar Simple JWT y permitir DELETE únicamente a usuarios staff; mantener GET, POST, PUT y PATCH para usuarios autenticados. |
+| 5 | ¿Cómo generar documentación verificable sin mantener manualmente un esquema separado del código? | Integrar drf-spectacular para generar OpenAPI y Swagger desde las rutas y serializers reales. | Escribir un esquema estático independiente, porque podría quedar desactualizado respecto de la implementación. | Usar `AutoSchema`, publicar `/api/schema/` y `/api/docs/`, y guardar evidencia sin secretos. |
 
-Consulta específica de seguridad pendiente para un Sprint posterior:
+## Decisiones críticas de EVA3
+
+- Se rechazó `AllowAny` global porque expondría la API de productos.
+- Se descartaron tokens permanentes y se eligió JWT con access/refresh.
+- DELETE quedó reservado a usuarios staff; las demás acciones requieren un
+  usuario autenticado.
+- `ProductoSerializer` usa campos explícitos y no `fields = "__all__"`;
+  `id` y `fecha_creacion` son de solo lectura.
+- Las pruebas conservaron validaciones y permisos reales, sin usar
+  `@csrf_exempt` como atajo.
+
+Consulta específica de seguridad resuelta en el Sprint 4:
 
 > ¿Qué mecanismo de autenticación y qué permisos diferenciados debe usar la
 > API de RataStock para proteger escritura y lectura sin exponer credenciales?

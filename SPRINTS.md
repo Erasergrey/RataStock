@@ -103,10 +103,15 @@ eliminaron todos los temporales y se guardó evidencia en
 
 ## Sprint 5 — Documentación, Swagger, IA y evidencias
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** documentar la API y actualizar README e `ia.md`, incluyendo una
 carpeta `pruebas/` con evidencias.
+
+drf-spectacular 0.30.0 configurado con esquema OpenAPI en `/api/schema/` y
+Swagger en `/api/docs/`. README documenta endpoints, JWT, permisos, paginación
+y códigos HTTP; `ia.md` consolida las decisiones críticas. Schema y Swagger
+respondieron 200 y la evidencia quedó en `pruebas/sprint5_documentacion.txt`.
 
 ## Sprint 6 — Render
 

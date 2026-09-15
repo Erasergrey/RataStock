@@ -252,7 +252,7 @@ El Sprint 1 incorporó:
 
 Se agregará en Sprints posteriores:
 
-- documentación y pruebas HTTP.
+- preparación de despliegue, QA final y evidencias de entrega.
 
 El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
 `DefaultRouter`. La API está disponible en `/api/productos/` y
@@ -277,15 +277,22 @@ pero DELETE requiere `is_staff`. Se comprobaron 401 sin JWT o con JWT inválido,
 evidencia sin credenciales ni tokens se guarda en
 `pruebas/sprint4_seguridad.txt`.
 
+El Sprint 5 incorporó drf-spectacular 0.30.0 y `AutoSchema`. El esquema OpenAPI
+está disponible en `/api/schema/` y la interfaz Swagger en `/api/docs/`; ambas
+rutas respondieron 200 y Swagger cargó correctamente. README documenta los
+endpoints, JWT access/refresh, el encabezado Bearer, permisos, paginación y
+códigos HTTP. La evidencia se guarda en `pruebas/sprint5_documentacion.txt` sin
+credenciales ni tokens.
+
 La configuración segura se definió antes de exponer recursos: no se utilizó
 `AllowAny` global y los endpoints de productos requieren autenticación JWT.
-Todavía no existen Swagger ni acciones API adicionales.
+No existen acciones API adicionales.
 
-El recurso REST previsto es `productos`, con endpoint principal
+El recurso REST implementado es `productos`, con endpoint principal
 `/api/productos/`, reutilizando el modelo `Producto` sin crear un modelo nuevo.
-El serializer declarará explícitamente los campos `id`, `nombre`,
+El serializer declara explícitamente los campos `id`, `nombre`,
 `descripcion`, `stock`, `precio`, `activo` y `fecha_creacion`. Los campos `id`
-y `fecha_creacion` serán de solo lectura porque identifican el recurso y son
+y `fecha_creacion` son de solo lectura porque identifican el recurso y son
 generados por Django, respectivamente. No se utilizará `fields = "__all__"`.
 
 ## Criterios académicos EVA3
