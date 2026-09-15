@@ -69,4 +69,9 @@ Rama de desarrollo: `eva3`.
 
 Sprint 1 completado: Django REST Framework 3.18.1 y `authtoken` están
 configurados con `TokenAuthentication`, `IsAuthenticated` y paginación de 10
-elementos. La API y sus endpoints todavía no están implementados.
+elementos.
+
+Sprint 2 completado: `ProductoSerializer` y `ProductoViewSet` exponen el modelo
+existente mediante `/api/productos/` y `/api/productos/<id>/`. La API requiere
+autenticación y convive con el CRUD HTML y Django Admin, que permanecen
+operativos. El endpoint para obtener tokens todavía no está implementado.

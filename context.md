@@ -252,16 +252,19 @@ El Sprint 1 incorporó:
 
 Se agregará en Sprints posteriores:
 
-- `ProductoSerializer`;
-- `ProductoViewSet`;
-- un router bajo `/api/`;
-- autenticación y permisos para la API;
+- un endpoint de obtención de token y permisos diferenciados;
 - documentación y pruebas HTTP.
 
-Todavía no existen serializers, ViewSets, routers ni endpoints API. La
-configuración segura se definió antes de exponer recursos: no se utilizó
-`AllowAny`, por lo que los futuros endpoints requerirán autenticación salvo una
-decisión explícita y documentada en un Sprint posterior.
+El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
+`DefaultRouter`. La API está disponible en `/api/productos/` y
+`/api/productos/<id>/`, con las acciones CRUD estándar de `ModelViewSet`. Las
+pantallas HTML y la API trabajan sobre el mismo modelo `Producto`, sin duplicar
+la lógica CRUD manual ni crear un modelo adicional.
+
+La configuración segura se definió antes de exponer recursos: no se utilizó
+`AllowAny`, por lo que los endpoints requieren autenticación. Todavía no existe
+un endpoint para obtener tokens, JWT, permisos personalizados, Swagger ni
+acciones API adicionales.
 
 El recurso REST previsto es `productos`, con endpoint principal
 `/api/productos/`, reutilizando el modelo `Producto` sin crear un modelo nuevo.

@@ -66,10 +66,15 @@ migraciones de `authtoken` están aplicadas; todavía no existen endpoints.
 
 ## Sprint 2 — Serializer, ViewSet y Router
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** crear `ProductoSerializer`, `ProductoViewSet` y
 `/api/productos/`.
+
+El serializer declara explícitamente los siete campos de `Producto`, con `id`
+y `fecha_creacion` de solo lectura. `ProductoViewSet` reutiliza el modelo con
+orden estable y el router genera las rutas de colección y detalle. HTML y API
+trabajan sobre el mismo modelo; todavía no existe endpoint de tokens.
 
 ## Sprint 3 — JSON y códigos HTTP
 

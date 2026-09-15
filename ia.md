@@ -78,6 +78,7 @@ Durante EVA3, cada consulta relevante deberá documentar:
 |---|---|---|---|---|
 | 0 | ¿Cómo extender RataStock con una API REST sin afectar las pantallas HTML de EVA2? | Reutilizar el modelo `Producto`, mantener las vistas Django existentes y construir la API en `/api/` mediante Sprints separados. | Reemplazar el CRUD HTML por una SPA, porque eliminaría evidencia funcional de EVA2 y ampliaría innecesariamente el alcance. | Conservar ambos consumidores: personas mediante HTML y programas mediante JSON. |
 | 1 | ¿Qué configuración inicial de DRF permite preparar una API segura antes de crear endpoints? | Registrar DRF y `authtoken`, usar autenticación por token, exigir autenticación por defecto y configurar paginación. | La IA pudo sugerir `AllowAny` para facilitar pruebas, pero se descartó porque dejaría la API pública. | Mantener `IsAuthenticated` como permiso global, `TokenAuthentication` y páginas de 10 elementos. |
+| 2 | ¿Cómo exponer `Producto` como recurso REST sin duplicar el CRUD HTML? | Crear un `ModelSerializer`, un `ModelViewSet` y registrarlo con `DefaultRouter`. | Crear vistas API manuales separadas para cada verbo, porque duplicaría comportamiento que DRF ya resuelve y aumentaría el mantenimiento. | Reutilizar el modelo `Producto`, declarar los campos explícitamente y conservar `id` y `fecha_creacion` como solo lectura. |
 
 Consulta específica de seguridad pendiente para un Sprint posterior:
 
