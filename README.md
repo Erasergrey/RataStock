@@ -66,3 +66,7 @@ Producto como API RESTful, conservando las pantallas HTML y funcionalidades de
 EVA2.
 
 Rama de desarrollo: `eva3`.
+
+Sprint 1 completado: Django REST Framework 3.18.1 y `authtoken` están
+configurados con `TokenAuthentication`, `IsAuthenticated` y paginación de 10
+elementos. La API y sus endpoints todavía no están implementados.

@@ -241,14 +241,27 @@ La aplicación conserva:
 - Django Sessions;
 - el dashboard de inventario.
 
+El Sprint 1 incorporó:
+
+- Django REST Framework 3.18.1;
+- las aplicaciones `rest_framework` y `rest_framework.authtoken`;
+- autenticación global mediante `TokenAuthentication`;
+- permisos globales mediante `IsAuthenticated`;
+- paginación global `PageNumberPagination` con 10 elementos por página;
+- las cuatro migraciones oficiales de `authtoken`.
+
 Se agregará en Sprints posteriores:
 
-- Django REST Framework;
 - `ProductoSerializer`;
 - `ProductoViewSet`;
 - un router bajo `/api/`;
 - autenticación y permisos para la API;
 - documentación y pruebas HTTP.
+
+Todavía no existen serializers, ViewSets, routers ni endpoints API. La
+configuración segura se definió antes de exponer recursos: no se utilizó
+`AllowAny`, por lo que los futuros endpoints requerirán autenticación salvo una
+decisión explícita y documentada en un Sprint posterior.
 
 El recurso REST previsto es `productos`, con endpoint principal
 `/api/productos/`, reutilizando el modelo `Producto` sin crear un modelo nuevo.

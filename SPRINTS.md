@@ -55,10 +55,14 @@ aplicación existente y definir el alcance REST sin implementar la API.
 
 ## Sprint 1 — Configuración DRF
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** instalar Django REST Framework, registrarlo en `settings.py` y
 configurar `REST_FRAMEWORK`.
+
+DRF 3.18.1 y `rest_framework.authtoken` configurados. La política global usa
+`TokenAuthentication`, `IsAuthenticated` y paginación de 10 elementos. Las
+migraciones de `authtoken` están aplicadas; todavía no existen endpoints.
 
 ## Sprint 2 — Serializer, ViewSet y Router
 
