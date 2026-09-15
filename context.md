@@ -299,6 +299,16 @@ JWT. También se comprobó la selección de PostgreSQL con variables ficticias,
 sin conectarse a un servicio externo ni exponer secretos. El producto original
 quedó intacto y el usuario temporal fue eliminado.
 
+PostgreSQL local también fue validado sobre PostgreSQL 18.6 en Windows. Se
+creó la base `ratastock`, se aplicaron todas las migraciones existentes y el
+ORM confirmó conexión, lectura y escritura. Login, listado HTML, Admin,
+Swagger y API JWT funcionaron sobre PostgreSQL. Los temporales se revirtieron
+en una transacción: quedaron cero productos y cero usuarios en esa base.
+SQLite conserva su producto legítimo y su archivo no cambió; no se migraron
+datos entre motores. `DATABASE_URL` se utilizó sólo en el entorno del proceso,
+sin guardar ni mostrar la credencial. Sin esa variable, SQLite continúa como
+respaldo local. README documenta el inicio local mediante entrada oculta.
+
 La configuración segura se definió antes de exponer recursos: no se utilizó
 `AllowAny` global y los endpoints de productos requieren autenticación JWT.
 No existen acciones API adicionales.

@@ -125,6 +125,43 @@ El listado usa paginación de 10 elementos. Se comprobaron los códigos 200,
 201, 204, 400, 401, 403 y 404. Nunca se deben guardar tokens reales ni
 contraseñas en código, documentación o evidencias.
 
+## PostgreSQL local
+
+PostgreSQL 18.6 está disponible en Windows y la base local `ratastock` fue
+creada y validada con Django. El driver `psycopg[binary]==3.3.5` ya está
+incluido en `requirements.txt`. Se aplicaron las migraciones existentes sin
+cambiar `Producto` ni generar migraciones nuevas de inventario.
+
+SQLite sigue siendo el respaldo cuando `DATABASE_URL` está vacía o no existe.
+Una URL PostgreSQL definida en el entorno selecciona esa base tanto en local
+como en Render. El formato de referencia, sin valores reales, es
+`postgresql://<usuario>:<clave-codificada>@<host>:<puerto>/ratastock`.
+Los caracteres especiales de usuario y clave deben codificarse para una URL.
+
+Para no guardar la credencial ni escribirla en el historial de PowerShell,
+introducir la URL mediante una entrada oculta y usarla sólo durante el proceso:
+
+```powershell
+$pgLocalUrl = Read-Host "DATABASE_URL de PostgreSQL local" -AsSecureString
+$env:DATABASE_URL = [System.Net.NetworkCredential]::new("", $pgLocalUrl).Password
+$env:DEBUG = "True"
+try {
+    .\.venv\Scripts\python.exe manage.py check
+    .\.venv\Scripts\python.exe manage.py migrate
+    .\.venv\Scripts\python.exe manage.py runserver
+} finally {
+    Remove-Item Env:DATABASE_URL -ErrorAction SilentlyContinue
+    $pgLocalUrl.Dispose()
+    Remove-Variable pgLocalUrl
+}
+```
+
+La prueba de ORM, login, listado HTML, Admin y API JWT pasó sobre PostgreSQL.
+Los datos temporales se revirtieron; la base quedó con cero productos y cero
+usuarios. No se copiaron productos ni cuentas desde SQLite y `db.sqlite3`
+permanece intacta. Para acceso persistente al Admin de PostgreSQL, crear un
+superusuario mediante `manage.py createsuperuser` en ese entorno.
+
 ## Preparación para Render
 
 El proyecto está preparado para ejecutarse en Render, pero la creación y
