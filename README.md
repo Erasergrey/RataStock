@@ -181,9 +181,12 @@ Variables de entorno requeridas en Render:
 | `SECRET_KEY` | Valor secreto generado para producción |
 | `DATABASE_URL` | URL interna de la base PostgreSQL de Render |
 | `DEBUG` | `False` |
+| `ALLOWED_HOSTS` | Hosts adicionales separados por comas, si son necesarios |
 
-Render proporciona `RENDER_EXTERNAL_HOSTNAME`, que se agrega a
-`ALLOWED_HOSTS`. No se deben guardar valores reales en Git ni en evidencias.
+Render proporciona `RENDER_EXTERNAL_HOSTNAME`, que se agrega automáticamente a
+`ALLOWED_HOSTS`. La variable `ALLOWED_HOSTS` permite agregar hosts adicionales
+mediante una lista separada por comas. No se deben guardar valores reales en
+Git ni en evidencias.
 
 Comando de construcción:
 
@@ -197,5 +200,5 @@ migraciones. WhiteNoise sirve los archivos generados en `STATIC_ROOT`.
 Comando de inicio:
 
 ```bash
-python -m gunicorn ratastock.asgi:application -k uvicorn.workers.UvicornWorker
+gunicorn ratastock.wsgi:application
 ```

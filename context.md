@@ -287,11 +287,11 @@ credenciales ni tokens.
 El Sprint 6 preparó el proyecto para Render sin realizar todavía un despliegue.
 La configuración usa PostgreSQL mediante `DATABASE_URL` cuando la variable
 existe y conserva SQLite como respaldo local. `DEBUG` y `SECRET_KEY` continúan
-obteniéndose del entorno; `RENDER_EXTERNAL_HOSTNAME` configura el host permitido
-en Render. WhiteNoise sirve los archivos estáticos recopilados en `STATIC_ROOT`.
+obteniéndose del entorno; `ALLOWED_HOSTS` admite una lista desde el entorno y
+`RENDER_EXTERNAL_HOSTNAME` agrega el host permitido de Render. WhiteNoise sirve
+los archivos estáticos recopilados en `STATIC_ROOT`.
 El script `build.sh` instala dependencias, ejecuta `collectstatic` y aplica las
-migraciones. El comando de inicio previsto es
-`python -m gunicorn ratastock.asgi:application -k uvicorn.workers.UvicornWorker`.
+migraciones. El comando de inicio previsto es `gunicorn ratastock.wsgi:application`.
 
 El QA local del Sprint 6 confirmó `manage.py check`, ausencia de migraciones
 nuevas, recopilación de estáticos, login, listado HTML, Admin, Swagger y API con
