@@ -1,0 +1,15 @@
+RataStock EVA3 - Sprint 4
+Evidencia de autenticacion JWT y permisos diferenciados
+
+Endpoint probado                         Codigo  Resultado esperado
+POST /api/token/                         200     Entrega access y refresh
+POST /api/token/refresh/                 200     Entrega un nuevo access
+GET /api/productos/ sin JWT              401     Acceso rechazado
+GET /api/productos/ con JWT              200     Acceso permitido
+POST /api/productos/ con JWT             201     Creacion permitida
+DELETE /api/productos/<id>/ no staff     403     Eliminacion rechazada
+DELETE /api/productos/<id>/ staff        204     Eliminacion permitida
+GET /api/productos/ con JWT invalido     401     Token rechazado
+
+No se guardaron credenciales ni valores de JWT. Los dos usuarios y el producto
+temporales fueron eliminados. El producto original quedo intacto.

@@ -252,7 +252,6 @@ El Sprint 1 incorporó:
 
 Se agregará en Sprints posteriores:
 
-- un endpoint de obtención de token y permisos diferenciados;
 - documentación y pruebas HTTP.
 
 El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
@@ -269,10 +268,18 @@ pruebas utilizaron un producto temporal, eliminado al finalizar, y conservaron
 intacto el producto original. La evidencia se guarda en
 `pruebas/sprint3_api.txt`.
 
+El Sprint 4 reemplazó la autenticación por token permanente por JWT mediante
+Simple JWT 5.5.1. `/api/token/` entrega el par access/refresh y
+`/api/token/refresh/` renueva el token de acceso. La API mantiene
+`IsAuthenticated`: usuarios autenticados pueden consultar, crear y actualizar,
+pero DELETE requiere `is_staff`. Se comprobaron 401 sin JWT o con JWT inválido,
+403 al eliminar como usuario no staff y 204 al eliminar como staff. La
+evidencia sin credenciales ni tokens se guarda en
+`pruebas/sprint4_seguridad.txt`.
+
 La configuración segura se definió antes de exponer recursos: no se utilizó
-`AllowAny`, por lo que los endpoints requieren autenticación. Todavía no existe
-un endpoint para obtener tokens, JWT, permisos personalizados, Swagger ni
-acciones API adicionales.
+`AllowAny` global y los endpoints de productos requieren autenticación JWT.
+Todavía no existen Swagger ni acciones API adicionales.
 
 El recurso REST previsto es `productos`, con endpoint principal
 `/api/productos/`, reutilizando el modelo `Producto` sin crear un modelo nuevo.

@@ -1,9 +1,12 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Producto
+from .permissions import EsStaffParaEliminar
 from .serializers import ProductoSerializer
 
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all().order_by("nombre", "id")
     serializer_class = ProductoSerializer
+    permission_classes = (IsAuthenticated, EsStaffParaEliminar)

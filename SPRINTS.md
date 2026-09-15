@@ -90,10 +90,16 @@ para stock negativo. La prueba controlada cubrió colección y detalle mediante
 
 ## Sprint 4 — Autenticación y permisos
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** proteger la API mediante token o JWT y permisos diferenciados;
 probar las respuestas 401 y 403.
+
+Simple JWT 5.5.1 configurado con endpoints de access/refresh. La API exige JWT
+y el permiso personalizado restringe DELETE a staff, manteniendo el resto del
+CRUD para usuarios autenticados. Se validaron 401, 403 y DELETE staff 204, se
+eliminaron todos los temporales y se guardó evidencia en
+`pruebas/sprint4_seguridad.txt`.
 
 ## Sprint 5 — Documentación, Swagger, IA y evidencias
 

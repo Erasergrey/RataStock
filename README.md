@@ -90,3 +90,17 @@ operativos. El endpoint para obtener tokens todavía no está implementado.
 Las pruebas usan JSON paginado, no desactivan validaciones y eliminan sus datos
 temporales al finalizar. La evidencia de Sprint 3 está en
 `pruebas/sprint3_api.txt`.
+
+### Seguridad JWT
+
+La API usa JWT mediante Simple JWT 5.5.1:
+
+- `POST /api/token/` obtiene los tokens access y refresh;
+- `POST /api/token/refresh/` renueva el token access;
+- todas las operaciones de productos requieren autenticación;
+- GET, POST, PUT y PATCH están disponibles para usuarios autenticados;
+- DELETE está restringido a usuarios staff.
+
+Se comprobaron respuestas 401 para ausencia o invalidez del JWT, 403 para
+DELETE no staff y 204 para DELETE staff. La evidencia está en
+`pruebas/sprint4_seguridad.txt` y no contiene credenciales ni tokens.
