@@ -51,3 +51,34 @@ visual de un proyecto previo del estudiante. Se añadió una interfaz propia en
 HTML/CSS con dashboard, métricas de lectura, formato CLP y responsive; no se
 incorporaron su arquitectura React, Firebase, hooks, servicios ni lógica
 bancaria.
+
+# EVA3
+
+## Herramientas
+
+ChatGPT y Codex.
+
+## Primer uso de IA en EVA3
+
+Se utilizó IA para analizar la pauta, planificar la extensión REST, mantener
+separadas la interfaz HTML y la futura API JSON, y definir un orden incremental
+de implementación que preserve la entrega final de EVA2.
+
+## Registro crítico obligatorio
+
+Durante EVA3, cada consulta relevante deberá documentar:
+
+- qué se preguntó;
+- qué recomendó la IA;
+- qué recomendación se descartó;
+- por qué se descartó;
+- qué solución decidió implementar el estudiante.
+
+| Sprint | Consulta realizada | Recomendación de IA | Recomendación descartada y motivo | Decisión del estudiante |
+|---|---|---|---|---|
+| 0 | ¿Cómo extender RataStock con una API REST sin afectar las pantallas HTML de EVA2? | Reutilizar el modelo `Producto`, mantener las vistas Django existentes y construir la API en `/api/` mediante Sprints separados. | Reemplazar el CRUD HTML por una SPA, porque eliminaría evidencia funcional de EVA2 y ampliaría innecesariamente el alcance. | Conservar ambos consumidores: personas mediante HTML y programas mediante JSON. |
+
+Consulta específica de seguridad pendiente para un Sprint posterior:
+
+> ¿Qué mecanismo de autenticación y qué permisos diferenciados debe usar la
+> API de RataStock para proteger escritura y lectura sin exponer credenciales?

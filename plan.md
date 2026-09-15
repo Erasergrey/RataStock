@@ -72,3 +72,32 @@ Base de datos
 - `SECRET_KEY` mediante variables de entorno.
 
 Estas medidas todavía no se implementan en el Sprint 0.
+
+# EVA3
+
+## Problema
+
+La aplicación actual responde a usuarios humanos mediante páginas HTML. EVA3
+debe permitir que otros programas consulten y modifiquen productos mediante
+JSON sin reemplazar la interfaz existente.
+
+## Solución
+
+Agregar una API RESTful con Django REST Framework sobre el modelo `Producto`
+existente, conservando el CRUD HTML, Django Admin, autenticación y sesiones de
+EVA2.
+
+```text
+Persona  → HTML
+Programa → API JSON
+             ↓
+          Producto
+             ↓
+        Django ORM
+             ↓
+           SQLite
+```
+
+El desarrollo se realizará por etapas en la rama `eva3`. El Sprint 0 define
+solamente el alcance y el versionado; Django REST Framework y la API se
+implementarán desde el Sprint 1.

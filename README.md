@@ -58,3 +58,11 @@ arquitectura.
 
 MyCodeBank se usó únicamente como referencia visual de un proyecto previo del
 estudiante. RataStock no incorpora React, Vite, Firebase ni lógica bancaria.
+
+## EVA3 — En desarrollo
+
+RataStock será extendido mediante Django REST Framework para exponer el recurso
+Producto como API RESTful, conservando las pantallas HTML y funcionalidades de
+EVA2.
+
+Rama de desarrollo: `eva3`.

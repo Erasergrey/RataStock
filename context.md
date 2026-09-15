@@ -222,3 +222,85 @@ Antes de realizar cualquier cambio:
 6. revisar últimos commits;
 7. entender el código existente;
 8. modificar únicamente el alcance del Sprint actual.
+
+# EVA3
+
+## Objetivo
+
+RataStock ES3 extiende la versión final de EVA2 mediante una API RESTful. La
+rama `eva3` parte exactamente de `eva2` en el commit `72b1c20`, mientras la
+rama y el tag de entrega de EVA2 permanecen congelados.
+
+La aplicación conserva:
+
+- el modelo `Producto` existente;
+- SQLite local y Django ORM;
+- Django Admin;
+- el CRUD HTML;
+- `LoginView` y `LogoutView`;
+- Django Sessions;
+- el dashboard de inventario.
+
+Se agregará en Sprints posteriores:
+
+- Django REST Framework;
+- `ProductoSerializer`;
+- `ProductoViewSet`;
+- un router bajo `/api/`;
+- autenticación y permisos para la API;
+- documentación y pruebas HTTP.
+
+El recurso REST previsto es `productos`, con endpoint principal
+`/api/productos/`, reutilizando el modelo `Producto` sin crear un modelo nuevo.
+El serializer declarará explícitamente los campos `id`, `nombre`,
+`descripcion`, `stock`, `precio`, `activo` y `fecha_creacion`. Los campos `id`
+y `fecha_creacion` serán de solo lectura porque identifican el recurso y son
+generados por Django, respectivamente. No se utilizará `fields = "__all__"`.
+
+## Criterios académicos EVA3
+
+- **3.1.1 — Configuración de Django REST Framework:** settings, serializer,
+  ViewSet, router y paginación.
+- **3.1.2 — Autenticación y permisos:** token o JWT, endpoints protegidos,
+  permisos diferenciados y credenciales protegidas.
+- **3.1.3 — JSON y códigos HTTP:** validación de 200, 201, 204, 400, 401, 403
+  y 404 mediante un cliente HTTP.
+- **3.1.4 — API RESTful:** recursos en plural, verbos HTTP, documentación,
+  README, evidencias y uso crítico de IA.
+
+## Arquitectura prevista
+
+```text
+                    RataStock
+                        |
+             +----------+----------+
+             |                     |
+          HTML ES2              API ES3
+             |                     |
+       Django Views           DRF ViewSet
+       ModelForm              Serializer
+             |                     |
+             +----------+----------+
+                        |
+                     Producto
+                        |
+                   Django ORM
+                        |
+                     SQLite
+```
+
+Las vistas HTML existentes no se eliminarán y la API vivirá bajo `/api/`.
+
+## Regla para los siguientes Sprints EVA3
+
+Antes de cada Sprint futuro:
+
+1. leer `context.md`;
+2. leer `README.md`;
+3. leer `plan.md`;
+4. leer `SPRINTS.md`;
+5. leer `ia.md`;
+6. revisar `git status`;
+7. revisar los últimos commits;
+8. comprobar que la rama activa sea `eva3`;
+9. modificar únicamente el alcance del Sprint actual.

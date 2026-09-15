@@ -43,3 +43,61 @@ Rediseño propio HTML/CSS completado: dashboard de inventario, métricas de
 lectura, formato CLP, tabla responsive, formularios, login y confirmación de
 eliminación. QA funcional, Auth/Sessions, Admin y limpieza del producto
 temporal verificados. Sin React, Vite ni Firebase.
+
+# EVA3
+
+## Sprint 0 — Preparación y versionado
+
+**Estado:** COMPLETADO
+
+**Objetivo:** preservar EVA2, crear y publicar la rama `eva3`, verificar la
+aplicación existente y definir el alcance REST sin implementar la API.
+
+## Sprint 1 — Configuración DRF
+
+**Estado:** PENDIENTE
+
+**Objetivo:** instalar Django REST Framework, registrarlo en `settings.py` y
+configurar `REST_FRAMEWORK`.
+
+## Sprint 2 — Serializer, ViewSet y Router
+
+**Estado:** PENDIENTE
+
+**Objetivo:** crear `ProductoSerializer`, `ProductoViewSet` y
+`/api/productos/`.
+
+## Sprint 3 — JSON y códigos HTTP
+
+**Estado:** PENDIENTE
+
+**Objetivo:** probar GET, POST, PUT/PATCH, DELETE y las respuestas 200, 201,
+204, 400 y 404.
+
+## Sprint 4 — Autenticación y permisos
+
+**Estado:** PENDIENTE
+
+**Objetivo:** proteger la API mediante token o JWT y permisos diferenciados;
+probar las respuestas 401 y 403.
+
+## Sprint 5 — Documentación, Swagger, IA y evidencias
+
+**Estado:** PENDIENTE
+
+**Objetivo:** documentar la API y actualizar README e `ia.md`, incluyendo una
+carpeta `pruebas/` con evidencias.
+
+## Sprint 6 — Render
+
+**Estado:** PENDIENTE
+
+**Objetivo:** preparar el despliegue de producción sin afectar el
+funcionamiento local.
+
+## Sprint 7 — QA y entrega
+
+**Estado:** PENDIENTE
+
+**Objetivo:** realizar la auditoría final, pruebas, revisión de seguridad y ZIP
+de EVA3.
