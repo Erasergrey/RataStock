@@ -250,9 +250,9 @@ El Sprint 1 incorporó:
 - paginación global `PageNumberPagination` con 10 elementos por página;
 - las cuatro migraciones oficiales de `authtoken`.
 
-Queda para el Sprint final:
-
-- QA final y evidencias de entrega.
+El Sprint 7 cerró la auditoría final: `check`, pruebas, verificación de
+migraciones, autenticación HTML, CRUD, Admin, JWT, permisos, Swagger y
+auditoría de secretos pasaron sin dejar datos temporales.
 
 El Sprint 2 incorporó `ProductoSerializer`, `ProductoViewSet` y un
 `DefaultRouter`. La API está disponible en `/api/productos/` y
@@ -327,6 +327,13 @@ Se corrigió la validación de `Producto.precio` a nivel de modelo mediante
 para `ModelForm`, Django Admin y la API DRF, mientras que los precios cero y
 positivos siguen siendo válidos. Se añadió una migración y pruebas de regresión
 para precio negativo, stock negativo, nombre vacío y POST API inválido.
+
+## Estado final EVA3
+
+**EVA3 FINALIZADA.** El Sprint 7 confirmó el funcionamiento de login, CRUD
+HTML, Django Admin, API JWT, permisos de eliminación, Swagger y esquema
+OpenAPI. Las pruebas técnicas y la auditoría de archivos no detectaron
+migraciones pendientes, secretos versionados ni datos temporales residuales.
 
 ## Criterios académicos EVA3
 

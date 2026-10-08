@@ -131,7 +131,12 @@ no se declara un despliegue exitoso.
 
 ## Sprint 7 — QA y entrega
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADO
 
 **Objetivo:** realizar la auditoría final, pruebas, revisión de seguridad y ZIP
 de EVA3.
+
+QA final completado: `manage.py check`, pruebas y verificación de migraciones
+pasaron. Se validaron login, CRUD HTML, Admin, JWT, permisos DELETE, Swagger,
+esquema OpenAPI, rechazo de precio negativo y eliminación de temporales. La
+auditoría confirmó que no se versionan secretos, bases locales ni entornos.
