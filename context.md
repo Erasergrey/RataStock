@@ -320,6 +320,14 @@ El serializer declara explícitamente los campos `id`, `nombre`,
 y `fecha_creacion` son de solo lectura porque identifican el recurso y son
 generados por Django, respectivamente. No se utilizará `fields = "__all__"`.
 
+## Corrección posterior a feedback EVA2
+
+Se corrigió la validación de `Producto.precio` a nivel de modelo mediante
+`MinValueValidator(0)`. De este modo, el rechazo de precios negativos es común
+para `ModelForm`, Django Admin y la API DRF, mientras que los precios cero y
+positivos siguen siendo válidos. Se añadió una migración y pruebas de regresión
+para precio negativo, stock negativo, nombre vacío y POST API inválido.
+
 ## Criterios académicos EVA3
 
 - **3.1.1 — Configuración de Django REST Framework:** settings, serializer,

@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -5,7 +6,11 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=120)
     descripcion = models.TextField(blank=True)
     stock = models.PositiveIntegerField(default=0)
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    precio = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+    )
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 

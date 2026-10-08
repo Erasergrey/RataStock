@@ -24,6 +24,22 @@ RataStock ES2 es una aplicación académica desarrollada con Django para gestion
 - GitHub
 - Inteligencia artificial como apoyo
 
+## Instalación mínima
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Copy-Item .env.example .env
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+La configuración de `ALLOWED_HOSTS` se obtiene desde el entorno. Para el
+desarrollo local, `.env` parte desde `.env.example`; no se deben versionar
+secretos ni credenciales.
+
 ## Estado
 
 Sprint 5 completado.

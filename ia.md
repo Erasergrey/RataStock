@@ -82,6 +82,7 @@ Durante EVA3, cada consulta relevante deberá documentar:
 | 3 | ¿Cómo comprobar respuestas JSON y errores reales antes de habilitar un endpoint de tokens? | Usar `APIClient` con `force_authenticate`, datos temporales y aserciones sobre códigos y cuerpos JSON. | Desactivar validaciones o usar `@csrf_exempt`/`AllowAny` para evitar errores, porque reduciría la seguridad y ocultaría el comportamiento real de DRF. | Mantener validaciones y autenticación activas; comprobar 200, 201, 204, 400, 401 y 404 y eliminar los temporales. |
 | 4 | ¿Qué autenticación y permisos permiten proteger la API y diferenciar una operación destructiva? | Usar JWT con access/refresh y combinar `IsAuthenticated` con un permiso específico para DELETE. | Se descartó dejar `TokenAuthentication` permanente porque el token estándar no expira. | Implementar Simple JWT y permitir DELETE únicamente a usuarios staff; mantener GET, POST, PUT y PATCH para usuarios autenticados. |
 | 5 | ¿Cómo generar documentación verificable sin mantener manualmente un esquema separado del código? | Integrar drf-spectacular para generar OpenAPI y Swagger desde las rutas y serializers reales. | Escribir un esquema estático independiente, porque podría quedar desactualizado respecto de la implementación. | Usar `AutoSchema`, publicar `/api/schema/` y `/api/docs/`, y guardar evidencia sin secretos. |
+| Corrección EVA2 | ¿Dónde debe validarse un precio no negativo para que la regla sea consistente en formulario, Admin y API? | Declarar `MinValueValidator(0)` en el campo del modelo y cubrirlo con pruebas de regresión. | Validar sólo en una vista o formulario, porque el Admin y la API podrían aceptar valores negativos. | Aplicar el validador al modelo `Producto`, crear la migración correspondiente y comprobar el rechazo por modelo y API. |
 
 ## Decisiones críticas de EVA3
 
@@ -93,6 +94,9 @@ Durante EVA3, cada consulta relevante deberá documentar:
   `id` y `fecha_creacion` son de solo lectura.
 - Las pruebas conservaron validaciones y permisos reales, sin usar
   `@csrf_exempt` como atajo.
+- El feedback docente sobre precios negativos se corrigió en el modelo para
+  mantener una única regla de negocio y se añadió cobertura automática de
+  regresión.
 
 Consulta específica de seguridad resuelta en el Sprint 4:
 
